@@ -1,4 +1,4 @@
-call .\gradlew build
+call gradlew build
 if "%ERRORLEVEL%" == "0" goto rename
 echo.
 echo GRADLEW BUILD has errors – breaking work
@@ -31,3 +31,4 @@ echo There were errors
 :end
 echo.
 echo Work is finished.
+
