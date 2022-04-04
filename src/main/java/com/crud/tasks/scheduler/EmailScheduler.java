@@ -19,12 +19,7 @@ public class EmailScheduler {
 
     public String communicat() {
         long size = taskRepository.count();
-        String communicat;
-        if (size == 1) {
-            communicat = "Currently in database you got: " + size + " task";
-        } else {
-            communicat = "Currently in database you got: " + size + " tasks";
-        }
+        String communicat = size > 1 ? "Currently in database you got: " + size + " tasks" : "Currently in database you got: " + size + " task";
 
         return communicat;
     }
