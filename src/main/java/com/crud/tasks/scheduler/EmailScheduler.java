@@ -19,9 +19,10 @@ public class EmailScheduler {
 
     public String communicat() {
         long size = taskRepository.count();
-        String communicat = size > 1 ? "Currently in database you got: " + size + " tasks" : "Currently in database you got: " + size + " task";
+        String a = "Currently in database you got: " + size;
+        String communicat = size > 1 ? " tasks" : " task";
 
-        return communicat;
+        return a + communicat;
     }
 
     @Scheduled(cron = "0 0 10 * * *")
