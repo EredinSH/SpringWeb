@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -38,6 +39,7 @@ public class TrelloMapperTest {
 
         //THEN
         assertEquals("TrelloBoardDto 1",board1.get(0).getName());
+        assertEquals("1",board1.get(0).getId());
 
     }
 
@@ -78,6 +80,8 @@ public class TrelloMapperTest {
 
         //THEN
         assertEquals("1",list.get(0).getId());
+        assertEquals("TrelloListDto 1",list.get(0).getName());
+        assertEquals(true,list.get(0).isClosed());
 
     }
     @Test
@@ -117,7 +121,11 @@ public class TrelloMapperTest {
         TrelloCard card = trelloMapper.mapToCard(cardDto);
 
         //THEN
-        assertEquals("TrelloCardDto 1",card.getName());
+        assertThat(card).isNotNull();
+        assertThat(card.getName()).isEqualTo("TrelloCardDto 1");
+        assertThat(card.getDescription()).isEqualTo("CardDto 1");
+        assertThat(card.getPos()).isEqualTo("PosDto 1");
+        assertThat(card.getListId()).isEqualTo("1");
 
     }
 

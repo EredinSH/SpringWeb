@@ -13,7 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @ExtendWith(MockitoExtension.class)
 class SimpleEmailServiceTest {
@@ -46,7 +46,10 @@ class SimpleEmailServiceTest {
 
         //THEN
         verify(javaMailSender, times(1)).send(mailMessage);
-
+        assertThat(mail.getMailTo()).isEqualTo("test@test.com");
+        assertThat(mail.getSubject()).isEqualTo("Test");
+        assertThat(mail.getMessage()).isEqualTo("Test Message");
+        assertThat(mail.getToCc()).isEqualTo("Test CC");
     }
 
 }
